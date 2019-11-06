@@ -6,8 +6,8 @@
 </head>
 <body>
     <?php
-        echo "目前系統的 PHP 版本為：";
-        echo PHP_OS;
+        //下列程式，會在網頁上印出「嗨!! 你好!!」
+        echo "嗨!! 你好!!";
     ?>
 </body>
 </html>

@@ -4,12 +4,11 @@
 </head>
 <body>
 <?php
-$a = 5; 
-$a++;
-echo '$a = ' . $a . '<br />';
-$b = 6;
-$b--;
-echo '$b = ' . $b;
+$count = 0;
+for($i = 1; $i <= 10; $i++) {
+    $count+= $i;
+}
+echo $count;
 ?>
 </body>
 </html>

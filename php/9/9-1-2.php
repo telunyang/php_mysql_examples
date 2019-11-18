@@ -4,12 +4,12 @@
 </head>
 <body>
 <?php
-$a = 5; 
-$a++;
-echo '$a = ' . $a . '<br />';
-$b = 6;
-$b--;
-echo '$b = ' . $b;
+$a = -5;
+if($a > 0) {
+    echo '$a 變數的值是正數';
+} else {
+    echo '$a 變數的值是負數';
+}
 ?>
 </body>
 </html>

@@ -38,6 +38,16 @@ CREATE TABLE `courses` (
   `updated_at` datetime NOT NULL COMMENT '更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='課程資料表';
 
+--
+-- 傾印資料表的資料 `courses`
+--
+
+INSERT INTO `courses` (`cId`, `cName`, `credit`, `isCompulsory`, `tId`, `created_at`, `updated_at`) VALUES
+('C001', '程式設計', 4, 1, 'T001', '2019-12-02 00:00:00', '2019-12-02 00:00:00'),
+('C002', '網頁設計', 3, 1, 'T002', '2019-12-02 00:00:00', '2019-12-02 00:00:00'),
+('C003', '視覺設計', 2, 1, 'T003', '2019-12-02 00:00:00', '2019-12-02 00:00:00'),
+('C004', '網路教學', 4, 1, 'T005', '2019-12-02 00:00:00', '2019-12-02 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -51,6 +61,17 @@ CREATE TABLE `scores` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '新增時間',
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='成績資料表';
+
+--
+-- 傾印資料表的資料 `scores`
+--
+
+INSERT INTO `scores` (`sId`, `cId`, `score`, `created_at`, `updated_at`) VALUES
+('087', 'C001', 74, '2019-12-02 11:11:59', '2019-12-02 11:11:59'),
+('087', 'C002', 93, '2019-12-02 11:12:35', '2019-12-02 11:12:35'),
+('088', 'C002', 63, '2019-12-02 11:12:35', '2019-12-02 11:12:35'),
+('088', 'C003', 82, '2019-12-02 11:13:06', '2019-12-02 11:13:06'),
+('088', 'C004', 94, '2019-12-02 11:13:06', '2019-12-02 11:13:06');
 
 -- --------------------------------------------------------
 
@@ -67,6 +88,14 @@ CREATE TABLE `students` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='學生資料表';
 
+--
+-- 傾印資料表的資料 `students`
+--
+
+INSERT INTO `students` (`sId`, `sName`, `sGender`, `sNickname`, `created_at`, `updated_at`) VALUES
+('087', '楊○○', '男', '好人', '2019-12-02 11:11:37', '2019-12-02 11:11:37'),
+('088', '陳○○', '女', '小白', '2019-12-02 11:11:37', '2019-12-02 11:11:37');
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +108,16 @@ CREATE TABLE `teachers` (
   `created_at` datetime NOT NULL COMMENT '新增時間',
   `updated_at` datetime NOT NULL COMMENT '更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='老師資料表';
+
+--
+-- 傾印資料表的資料 `teachers`
+--
+
+INSERT INTO `teachers` (`tId`, `tName`, `created_at`, `updated_at`) VALUES
+('T001', '曾○○', '2019-12-02 00:00:00', '2019-12-02 00:00:00'),
+('T002', '林○○', '2019-12-02 00:00:00', '2019-12-02 00:00:00'),
+('T003', '王○○', '2019-12-02 00:00:00', '2019-12-02 00:00:00'),
+('T005', '謝○○', '2019-12-02 00:00:00', '2019-12-02 00:00:00');
 
 --
 -- 已傾印資料表的索引

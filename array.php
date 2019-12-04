@@ -27,13 +27,37 @@ $arr = [
         "productPrice" => 25
     ],
 ];
-
-for($i = 0; $i < count($arr); $i++){
-    echo "ProductId = {$arr[$i]['productId']} ";
-    echo "ProductName = {$arr[$i]['productName']} ";
-    echo "ProductPrice = {$arr[$i]['productPrice']} ";
-    echo "<br />";
-}
-
 ?>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Product Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php
+    for($i = 0; $i < count($arr); $i++){
+        echo "<tr>
+            <td>{$arr[$i]['productId']}</td>
+            <td>{$arr[$i]['productName']}</td>
+            <td>{$arr[$i]['productPrice']}</td>
+        </tr>";
+    }
+    ?>
+
+    <?php
+    for($i = 0; $i < count($arr); $i++){
+        echo "<tr>
+            <td>{$arr[$i]['productId']}</td>
+            <td>{$arr[$i]['productName']}</td>
+            <td>{$arr[$i]['productPrice']}</td>
+        </tr>";
+    }
+    ?>
+    </tbody>
+</table>
+
 

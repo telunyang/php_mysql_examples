@@ -49,12 +49,14 @@ $arr = [
     ?>
 
     <?php
-    for($i = 0; $i < count($arr); $i++){
-        echo "<tr>
-            <td>{$arr[$i]['productId']}</td>
-            <td>{$arr[$i]['productName']}</td>
-            <td>{$arr[$i]['productPrice']}</td>
-        </tr>";
+    for($i = 0; $i < count($arr); $i++){  
+    ?>
+        <tr>
+            <td><?php echo "{$arr[$i]['productId']}"; ?></td>
+            <td><?php echo "{$arr[$i]['productName']}"; ?></td>
+            <td><?php echo "{$arr[$i]['productPrice']}"; ?></td>
+        </tr>
+    <?php
     }
     ?>
     </tbody>

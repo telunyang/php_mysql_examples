@@ -55,12 +55,14 @@ $page = $page < 1 ? 1 : $page;
         $sql = "SELECT `id`, `studentId`, `studentName`, `studentGender`, `studentBirthday`, `studentPhoneNumber` ";
         $sql.= "FROM `students` ";
         $sql.= "ORDER BY `id` ASC ";
-        $sql.= "LIMIT %s, %s ";
-        $sql = sprintf($sql, ($page - 1) * $numPerPage, $numPerPage);
+        $sql.= "LIMIT ?, ? ";
+
+        //設定繫結值
+        $arrParam = [($page - 1) * $numPerPage, $numPerPage];
 
         //查詢
         $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($arrParam);
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         //整理 primary key

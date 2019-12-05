@@ -97,6 +97,7 @@ $page = $page < 1 ? 1 : $page;
                     <input type="text" name="studentPhoneNumber_<?php echo $arr[$i]['id']; ?>" value="<?php echo $arr[$i]['studentPhoneNumber']; ?>" maxlength="10" />
                 </td>
                 <td class="border">
+                    <a href="./edit.php?editId=<?php echo $arr[$i]['id']; ?>">編輯</a>
                     <a href="./delete.php?deleteId=<?php echo $arr[$i]['id']; ?>">刪除</a>
                 </td>
             </tr>

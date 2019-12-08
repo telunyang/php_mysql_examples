@@ -10,9 +10,9 @@ $sql = "DELETE FROM `students` WHERE `id` = ? ";
 
 $count = 0;
 
-for($i = 0; $i < count($_POST['deleteIds']); $i++){
+for($i = 0; $i < count($_POST['chk']); $i++){
     $arrParam = [
-        $_POST['deleteIds'][$i]
+        $_POST['chk'][$i]
     ];
 
     $stmt = $pdo->prepare($sql);

@@ -64,14 +64,15 @@ $page = $page < 1 ? 1 : $page;
         //查詢分頁後的學生資料
         $stmt = $pdo->prepare($sql);
         $stmt->execute($arrParam);
-        $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if(count($arr) > 0) {
+        //資料數量大於 0，則列出所有資料
+        if($stmt->rowCount() > 0) {
+            $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
             for($i = 0; $i < count($arr); $i++) {
         ?>
             <tr>
                 <td class="border">
-                    <input type="checkbox" name="deleteIds[]" value="<?php echo $arr[$i]['id']; ?>" />
+                    <input type="checkbox" name="chk[]" value="<?php echo $arr[$i]['id']; ?>" />
                 </td>
                 <td class="border"><?php echo $arr[$i]['studentId']; ?></td>
                 <td class="border"><?php echo $arr[$i]['studentName']; ?></td>

@@ -5,8 +5,6 @@ require_once('./checkSession.php');
 //引用資料庫連線
 require_once('./db.inc.php');
 
-print_r($_POST['deleteIds']);
-
 //SQL 語法
 $sql = "DELETE FROM `students` WHERE `id` = ? ";
 

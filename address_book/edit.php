@@ -14,17 +14,21 @@ require_once('./db.inc.php');
     .border {
         border: 1px solid;
     }
+    .w200px {
+        width: 200px;
+    }
     </style>
 </head>
 <body>
-這裡是後端管理頁面 - <a href="./admin.php">通訊錄全覽</a> | <a href="./logout.php?logout=1">登出</a>
+<?php require_once('./templates/title.php'); ?>
 <hr />
-<form name="myForm" method="POST" action="updateEdit.php">
+<form name="myForm" method="POST" action="updateEdit.php" enctype="multipart/form-data">
     <table class="border">
         <tbody>
         <?php
         //SQL 敘述
-        $sql = "SELECT `id`, `studentId`, `studentName`, `studentGender`, `studentBirthday`, `studentPhoneNumber` 
+        $sql = "SELECT `id`, `studentId`, `studentName`, `studentGender`, `studentBirthday`, 
+                        `studentPhoneNumber`, `studentDescription`, `studentImg`
                 FROM `students` 
                 WHERE `id` = ?";
 
@@ -70,6 +74,21 @@ require_once('./db.inc.php');
                 <td class="border">手機號碼</td>
                 <td class="border">
                     <input type="text" name="studentPhoneNumber" value="<?php echo $arr[0]['studentPhoneNumber']; ?>" maxlength="10" />
+                </td>
+            </tr>
+            <tr>
+                <td class="border">個人描述</td>
+                <td class="border">
+                    <textarea name="studentDescription"><?php echo $arr[0]['studentDescription']; ?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="border">大頭貼</td>
+                <td class="border">
+                <?php if($arr[0]['studentImg'] !== NULL) { ?>
+                    <img class="w200px" src="./files/<?php echo $arr[0]['studentImg']; ?>" />
+                <?php } ?>
+                <input type="file" name="studentImg" />
                 </td>
             </tr>
             <tr>

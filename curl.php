@@ -5,7 +5,7 @@ $headers = [
     'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:28.0) Gecko/20100101 Firefox/28.0',
 ];
 
-$url = 'https://store.line.me/stickershop/product/14446/zh-Hant';
+$url = 'https://store.line.me/stickershop/product/14696/zh-Hant';
 
 //透過 curl 取得 solr 查詢結果(資料總數)
 $ch = curl_init();

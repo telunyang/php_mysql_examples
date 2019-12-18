@@ -75,12 +75,10 @@ if(isset($_GET['itemId'])){
                 $arrReply = $stmtReply->fetchAll(PDO::FETCH_ASSOC);
                 for($j = 0; $j < count($arrReply); $j++) {
             ?>
-            <div class="row">
-                <div class="col-md-3"><?php echo $arrReply[$j]['name'] ?>表示</div>
-                <div class="col-md-9"><?php echo nl2br($arrReply[$j]['content']) ?></div>
-            </div>
-                
-
+                <div class="row">
+                    <div class="col-md-3"><?php echo $arrReply[$j]['name'] ?>表示</div>
+                    <div class="col-md-9"><?php echo nl2br($arrReply[$j]['content']) ?></div>
+                </div>
             <?php
                 }
             } else {

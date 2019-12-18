@@ -1,3 +1,5 @@
+<div class="container">
+
 <?php
 require_once('./db.inc.php'); 
 
@@ -6,7 +8,7 @@ if(isset($_GET['itemId'])){
     //SQL 敘述
     $sql = "SELECT `id`, `name`,`content`, `rating`, `itemId`, `created_at`, `updated_at`
             FROM `comments`
-            WHERE `itemId` = ?
+            WHERE `itemId` = ? AND `parentId` = 0
             ORDER BY `created_at` DESC ";
 
     //查詢分頁後的商品資料
@@ -19,6 +21,7 @@ if(isset($_GET['itemId'])){
         $arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
         for($i = 0; $i < count($arr); $i++) {
     ?>
+        <div class="row">
             <div class="media">
                 <img src="http://www.likoda.com.tw/style/images/frontpage/default_user_icon.png" class="mr-3" alt="...">
                 <div class="media-body">
@@ -29,9 +32,41 @@ if(isset($_GET['itemId'])){
                     <p>更新時間: <?php echo $arr[$i]["updated_at"]; ?></p>
                 </div>
             </div>
+        </div>
+
+        <?php
+         $sqlReply = "SELECT `id`, `name`,`content`, `rating`, `itemId`, `created_at`, `updated_at`
+                    FROM `comments`
+                    WHERE `itemId` = ? AND `parentId` = ?
+                    ORDER BY `created_at` ASC ";
+        //查詢分頁後的商品資料
+        $stmtReply = $pdo->prepare($sqlReply);
+        $arrReplyParam = [ 
+            $_GET['itemId'],
+            $arr[$i]["id"]
+        ];
+        $stmtReply->execute($arrReplyParam); //
+
+        //若商品項目個數大於 0，則列出商品
+        if($stmtReply->rowCount() > 0) {
+            $arrReply = $stmtReply->fetchAll(PDO::FETCH_ASSOC);
+            for($j = 0; $j < count($arrReply); $j++) {
+            ?>
+            <div class="row">
+                <div class="col-md-3"><?php echo $arrReply[$j]['name'] ?>表示</div>
+                <div class="col-md-9"><?php echo nl2br($arrReply[$j]['content']) ?></div>
+            </div>
+            <?php
+            }
+        } else {
+            echo "管理員尚未回覆";
+        }
+        ?>
 
     <?php
         }
     }
 } 
 ?>
+
+</div>

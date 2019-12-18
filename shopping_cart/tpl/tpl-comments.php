@@ -16,7 +16,7 @@
                     <textarea name="content" value=""></textarea>
                 </td>
                 <td class="border">
-                    <input type="text" name="ranking" value="5" maxlength="1" />
+                    <input type="text" name="rating" value="5" maxlength="1" />
                 </td>
             </tr>
         </tbody>

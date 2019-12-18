@@ -4,7 +4,7 @@ require_once('./db.inc.php');
 if(isset($_GET['itemId'])){
 
     //SQL 敘述
-    $sql = "SELECT `id`, `name`,`content`, `ranking`, `itemId`, `created_at`, `updated_at`
+    $sql = "SELECT `id`, `name`,`content`, `rating`, `itemId`, `created_at`, `updated_at`
             FROM `comments`
             WHERE `itemId` = ?
             ORDER BY `created_at` DESC ";
@@ -24,7 +24,7 @@ if(isset($_GET['itemId'])){
                 <div class="media-body">
                     <h5 class="mt-0"><?php echo $arr[$i]["name"]; ?></h5>
                     <p><?php echo nl2br($arr[$i]["content"]); ?></p>
-                    <p>評分: <?php echo $arr[$i]["ranking"]; ?></p>
+                    <p>評分: <?php echo $arr[$i]["rating"]; ?></p>
                     <p>新增時間: <?php echo $arr[$i]["created_at"]; ?></p>
                     <p>更新時間: <?php echo $arr[$i]["updated_at"]; ?></p>
                 </div>

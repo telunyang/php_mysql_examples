@@ -2,9 +2,9 @@ $(document).ready(function(){
     let filter_items = $('div.filter-items');
     $( "#slider-range" ).slider({
         range: true,
-        min: 0,
-        max: 50000,
-        values: [ 2000, 30000 ],
+        min: 100,
+        max: 3000,
+        values: [ 300, 1000 ],
         slide: function( event, ui ) {
             $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 

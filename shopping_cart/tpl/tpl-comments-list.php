@@ -51,15 +51,17 @@ if(isset($_GET['itemId'])){
         if($stmtReply->rowCount() > 0) {
             $arrReply = $stmtReply->fetchAll(PDO::FETCH_ASSOC);
             for($j = 0; $j < count($arrReply); $j++) {
-            ?>
+        ?>
             <div class="row">
                 <div class="col-md-3"><?php echo $arrReply[$j]['name'] ?>表示</div>
                 <div class="col-md-9"><?php echo nl2br($arrReply[$j]['content']) ?></div>
             </div>
-            <?php
+        <?php
             }
         } else {
-            echo "管理員尚未回覆";
+        ?>
+            <div class="row">管理員尚未回覆</div>
+        <?php
         }
         ?>
 

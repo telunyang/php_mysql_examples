@@ -15,24 +15,25 @@ require_once("./tpl/func-getRecursiveCategoryIds.php");
         <!-- 商品項目清單 -->
         <div class="col-md-8 col-sm-6">
             <div class="row">
-        <?php
-        if(isset($_GET['categoryId'])){
-            $strCategoryIds = "";;
-            $strCategoryIds.= $_GET['categoryId'];
-            getRecursiveCategoryIds($pdo, $_GET['categoryId']);
+            <?php
+            if(isset($_GET['categoryId'])){
+                $strCategoryIds = "";;
+                $strCategoryIds.= $_GET['categoryId'];
+                getRecursiveCategoryIds($pdo, $_GET['categoryId']);
+            }
 
             //SQL 敘述
             $sql = "SELECT `items`.`itemId`, `items`.`itemName`, `items`.`itemImg`, `items`.`itemPrice`, 
                             `items`.`itemQty`, `items`.`itemCategoryId`, `items`.`created_at`, `items`.`updated_at`,
                             `categories`.`categoryName`
                     FROM `items` INNER JOIN `categories`
-                    ON `items`.`itemCategoryId` = `categories`.`categoryId`
-                    WHERE `items`.`itemCategoryId` in ({$strCategoryIds})
-                    ORDER BY `items`.`itemId` ASC ";
+                    ON `items`.`itemCategoryId` = `categories`.`categoryId`";
+            if(isset($_GET['categoryId'])){ $sql .= "WHERE `items`.`itemCategoryId` in ({$strCategoryIds})"; }
+            $sql .="ORDER BY `items`.`itemId` ASC ";
 
             //查詢分頁後的商品資料
             $stmt = $pdo->prepare($sql);
-            $stmt->execute(); //$arrParam
+            $stmt->execute();
 
             //若商品項目個數大於 0，則列出商品
             if($stmt->rowCount() > 0) {
@@ -56,8 +57,7 @@ require_once("./tpl/func-getRecursiveCategoryIds.php");
             <?php
                 }
             }
-        } 
-        ?>
+            ?>
             </div>
         </div>
 

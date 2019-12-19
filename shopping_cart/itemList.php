@@ -28,7 +28,10 @@ require_once("./tpl/func-getRecursiveCategoryIds.php");
                             `categories`.`categoryName`
                     FROM `items` INNER JOIN `categories`
                     ON `items`.`itemCategoryId` = `categories`.`categoryId`";
+
+            //若網址有商品種類編號，則整合字串來操作 SQL 語法
             if(isset($_GET['categoryId'])){ $sql .= "WHERE `items`.`itemCategoryId` in ({$strCategoryIds})"; }
+
             $sql .="ORDER BY `items`.`itemId` ASC ";
 
             //查詢分頁後的商品資料

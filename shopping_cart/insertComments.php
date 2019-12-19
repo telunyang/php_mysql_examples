@@ -15,8 +15,33 @@ if($stmt->rowCount() > 0) {
     $objResponse['success'] = true;
     $objResponse['code'] = 200;
     $objResponse['info'] = "新增成功";
-    echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
-    exit();
+
+    //取得最後新增的流水號
+    $newId = $pdo->lastInsertId();
+
+    try{
+        $pdo->beginTransaction();
+
+        //取得最後一次新增的資料
+        $sqlComments = "SELECT `id`, `name`,`content`, `rating`, `itemId`, `created_at`, `updated_at`
+                        FROM `comments`
+                        WHERE `id` = ?
+                        ORDER BY `created_at` ASC ";
+        $stmtComments = $pdo->prepare($sqlComments);
+        $arrCommentsParam = [$newId];
+        $stmtComments->execute($arrCommentsParam);
+        if($stmtComments->rowCount() > 0){
+            $objResponse['data'] = $stmtComments->fetchAll(PDO::FETCH_ASSOC)[0];
+        }
+
+        $pdo->commit();
+
+        echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
+        exit();
+    } catch(PDOException $e){
+        $pdo->rollBack();
+        echo "Failed: " . $e->getMessage();
+    }
 } else {
     header("Refresh: 3; url=./itemDetail.php?itemId={$_POST['itemId']}");
     $objResponse['success'] = false;

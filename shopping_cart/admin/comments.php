@@ -21,7 +21,7 @@ require_once('../db.inc.php'); //引用資料庫連線
 <hr />
 <h3>評論頁面</h3>
 
-<div class="container">
+<div class="container"">
 
 <?php
 if(isset($_GET['itemId'])){

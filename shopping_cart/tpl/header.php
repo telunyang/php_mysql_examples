@@ -5,7 +5,16 @@
 
     <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="./itemList.php">商品一覽</a>
-    <a class="p-2 text-dark" href="./myCart.php">我的購物車</a>
+    <a class="p-2 text-dark" href="./myCart.php">
+        <span>我的購物車</span>
+        <?php 
+        if(isset($_SESSION["cart"])){
+            echo "(".count($_SESSION["cart"]).")";
+        } else {
+            echo "(0)";
+        }
+        ?>
+    </a>
 
     <?php if(isset($_SESSION["username"])) { ?>
     <a class="p-2 text-dark" href="./check.php">我的訂單</a>

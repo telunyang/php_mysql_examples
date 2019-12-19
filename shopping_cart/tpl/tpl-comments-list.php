@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="comments">
 
 <?php
 require_once('./db.inc.php'); 

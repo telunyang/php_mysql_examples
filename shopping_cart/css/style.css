@@ -1,7 +1,6 @@
 img.list-item{
     width: 100%;
     max-width: 443.75px;
-    height: 443.75px;
 }
 
 p.list-item-card {
@@ -9,7 +8,8 @@ p.list-item-card {
 }
 
 img.item-view {
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
 }
 
 img.item-preview {

@@ -42,6 +42,53 @@ $(document).ready(function(){
         })
         .fail(function( jqXHR, textStatus ) {
             alert( "Request failed: " + textStatus );
-        });;
+        });
+    });
+
+    //送出評論
+    $(document).on("click", "input#btn_insertComments", function(){
+        $.ajax({
+            method: "POST",
+            url: "./insertComments.php",
+            dataType: "json",
+            data: { 
+                name: $("input[name='name']").val(),
+                itemId: $("input#itemId[type='hidden']").val(), 
+                content: $("textarea[name='content']").val(), 
+                rating: $("input[name='rating']").val()
+            }
+        })
+        .done(function( json ) {
+            alert(json.info);
+            
+            //動態新增評論元素
+            $("div#comments").prepend(`
+            <div class="row">
+                <div class="media">
+                    <img src="http://www.likoda.com.tw/style/images/frontpage/default_user_icon.png" class="mr-3" alt="...">
+                    <div class="media-body">
+                        <h5 class="mt-0">${json.data.name}</h5>
+                        <p>${json.data.content}</p>
+                        <p>評分: ${json.data.rating}</p>
+                        <p>新增時間: ${json.data.created_at}</p>
+                        <p>更新時間: ${json.data.updated_at}</p>
+                    </div>
+                </div>
+            </div>`);
+        })
+        .fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });
+    });
+
+    //評分
+    $("div.rating")
+    .rate({
+        max_value: 5,
+        step_size: 1
+    })
+    .on("change", function(ev, data){
+        // console.log(data.from, data.to);
+        $("input[name='rating']").val(data.to);
     });
 });

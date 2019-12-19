@@ -17,13 +17,16 @@
                         <textarea name="content" value="" rows="10" cols="50"></textarea>
                     </td>
                     <td class="border">
-                        <input type="text" name="rating" value="5" maxlength="1" />
+                        <input type="hidden" name="rating" id="rating" value="5" maxlength="1" />
+                        <div class="rating" data-rate-value="5"></div>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <td class="border" colspan="3"><input type="submit" name="smb" value="新增"></td>
+                    <td class="border" colspan="3">
+                        <input type="button" name="btn_insertComments" id="btn_insertComments" value="新增">
+                    </td>
                 </tr>
             </tfoot>
         </table>

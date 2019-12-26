@@ -11,12 +11,9 @@ require_once('vendor/autoload.php');
 // $cellValue = $spreadsheet->getActiveSheet()->getCell('A1')->getValue();
 // echo $cellValue;
 
-
 $inputFileName = './part5.xlsx';
 $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
-
 $highestRow = $spreadsheet->getActiveSheet()->getHighestRow();
-
 
 require_once('./shopping_cart/db.inc.php');
 
@@ -38,9 +35,9 @@ for($i = 2; $i <= $highestRow; $i++) {
     $courseCollaboratorIntroduction =   $spreadsheet->getActiveSheet()->getCell('L'.$i)->getValue();
     $courseResult =                     $spreadsheet->getActiveSheet()->getCell('M'.$i)->getValue();
     $courseSDGs =                       $spreadsheet->getActiveSheet()->getCell('N'.$i)->getValue();
-
+    
     echo "[".$i."] ".$courseTerm." ".$courseName."\n";
-
+    
     $sql = "insert into `courses` (
         `courseId`, `courseTerm`, `courseName`, `courseLecturer`, `courseLecturerIntroduction`, 
         `coursePlace`, `courseIntroduction`, `courseCredit`, `courseClassTime`, `courseCollaborator`, 
@@ -51,7 +48,6 @@ for($i = 2; $i <= $highestRow; $i++) {
             ?,?,?,?
         )";
     $stmt = $pdo->prepare($sql);
-
     $arrParam = [
         (string)$courseId,
         (string)$courseTerm,
@@ -68,9 +64,7 @@ for($i = 2; $i <= $highestRow; $i++) {
         (string)$courseResult,
         (string)$courseSDGs,
     ];
-
     $stmt->execute($arrParam);
-
     if( $stmt->rowCount() > 0 ){
         echo $pdo->lastInsertId();
     }

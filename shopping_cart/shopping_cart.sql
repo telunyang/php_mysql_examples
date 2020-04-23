@@ -39,13 +39,6 @@ CREATE TABLE `admin` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理者帳號';
 
---
--- 傾印資料表的資料 `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `pwd`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', '我是管理者', '2019-11-25 13:18:46', '2019-12-16 01:34:25');
-
 -- --------------------------------------------------------
 
 --
@@ -110,6 +103,21 @@ CREATE TABLE `item_lists` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '新增時間',
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '更新時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='訂單中的商品列表';
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `item_tracking`
+--
+
+CREATE TABLE `item_tracking` (
+  `id` int(11) NOT NULL COMMENT '流水號',
+  `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '使用者帳號',
+  `itemId` int(11) NOT NULL COMMENT '商品編號',
+  `msg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '訊息',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '新增時間',
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT '修改時間'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品追縱';
 
 -- --------------------------------------------------------
 
@@ -209,6 +217,12 @@ ALTER TABLE `item_lists`
   ADD PRIMARY KEY (`itemListId`);
 
 --
+-- 資料表索引 `item_tracking`
+--
+ALTER TABLE `item_tracking`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `multiple_images`
 --
 ALTER TABLE `multiple_images`
@@ -241,7 +255,7 @@ ALTER TABLE `users`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '流水號', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '流水號';
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `categories`
@@ -266,6 +280,12 @@ ALTER TABLE `items`
 --
 ALTER TABLE `item_lists`
   MODIFY `itemListId` int(11) NOT NULL AUTO_INCREMENT COMMENT '流水號';
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `item_tracking`
+--
+ALTER TABLE `item_tracking`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '流水號';
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `multiple_images`

@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once("./checkSession.php");
 require_once('./db.inc.php');
 require_once('./tpl/tpl-html-head.php'); 
@@ -8,7 +7,7 @@ require_once("./tpl/func-buildTree.php");
 require_once("./tpl/func-getRecursiveCategoryIds.php");
 ?>
 
-<form name="myForm" method="POST" action="./deleteCheck.php">
+<form name="myForm" method="POST" action="./deleteOrder.php">
 
 <div class="container-fluid">
     <div class="row">
@@ -85,7 +84,7 @@ require_once("./tpl/func-getRecursiveCategoryIds.php");
                             }
                             ?>
                             </td>
-                            <td class="border-0 align-middle"><a href="./deleteCheck.php?orderId=<?php echo $arrOrders[$i]["orderId"] ?>" class="text-dark">刪除</a></td>
+                            <td class="border-0 align-middle"><a href="./deleteOrder.php?orderId=<?php echo $arrOrders[$i]["orderId"] ?>" class="text-dark">刪除</a></td>
                         </tr>
                     <?php
                         }

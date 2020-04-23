@@ -2,10 +2,14 @@
 session_start();
 require_once('./db.inc.php');
 
+//預設訊息 (錯誤先行)
+$objResponse['success'] = false;
+$objResponse['code'] = 400;
+$objResponse['info'] = "加入購物車失敗";
+$objResponse['cartItemNum'] = 0;
+
 if( !isset($_POST['cartQty']) || !isset($_POST['itemId']) ){
     header("Refresh: 3; url=./itemList.php");
-    $objResponse['success'] = false;
-    $objResponse['code'] = 400;
     $objResponse['info'] = "資料傳遞有誤";
     echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
     exit();
@@ -13,9 +17,6 @@ if( !isset($_POST['cartQty']) || !isset($_POST['itemId']) ){
 
 //先前沒有建立購物車，就直接初始化 (建立)
 if(!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
-
-$objResponse = [];
-
 
 //SQL 敘述
 $sql = "SELECT `items`.`itemId`, `items`.`itemName`, `items`.`itemImg`, `items`.`itemPrice`, 
@@ -47,14 +48,12 @@ if($stmt->rowCount() > 0) {
     $objResponse['success'] = true;
     $objResponse['code'] = 200;
     $objResponse['info'] = "已加入購物車";
-    echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
-    exit();
+    $objResponse['cartItemNum'] = count($_SESSION['cart']);
 } else {
     header("Refresh: 3; url=./itemDetail.php?itemId={$_POST['itemId']}");
-    $objResponse['success'] = false;
-    $objResponse['code'] = 400;
     $objResponse['info'] = "查無商品項目";
+    $objResponse['cartItemNum'] = count($_SESSION['cart']);
     echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
-    exit();
-    
 }
+
+echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);

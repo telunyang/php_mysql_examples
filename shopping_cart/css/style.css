@@ -17,6 +17,10 @@ img.item-preview {
     height: 80px;
 }
 
+img.item-tracking-preview {
+    width: 250px;
+}
+
 img.payment_type_icon{
     width: 50px;
 }

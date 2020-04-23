@@ -28,13 +28,55 @@ $(document).ready(function(){
 
     //加入購物車
     $(document).on("click", "button#btn_addCart", function(e){
+        let btn = $(this);
         $.ajax({
             method: "POST",
             url: "./addCart.php",
             dataType: "json",
             data: { 
-                itemId: $("input#itemId[type='hidden']").val(), 
+                itemId: btn.attr('data-item-id'), 
                 cartQty: $("input#cartQty").val()
+            }
+        })
+        .done(function( json ) {
+            alert(json.info);
+            $('span#cartItemNum').text(json.cartItemNum);
+        })
+        .fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });
+    });
+
+    //加入購物車 (在商品追蹤頁面)
+    $(document).on("click", "button#btn_addCartForItemTracking", function(e){
+        let btn = $(this);
+        $.ajax({
+            method: "POST",
+            url: "./addCart.php",
+            dataType: "json",
+            data: { 
+                itemId: btn.attr('data-item-id'), 
+                cartQty: 1
+            }
+        })
+        .done(function( json ) {
+            alert(json.info);
+            $('span#cartItemNum').text(json.cartItemNum);
+        })
+        .fail(function( jqXHR, textStatus ) {
+            alert( "Request failed: " + textStatus );
+        });
+    });
+
+    //追蹤商品
+    $(document).on("click", "button#btn_addItemTracking", function(){
+        let btn = $(this);
+        $.ajax({
+            method: "POST",
+            url: "./addItemTracking.php",
+            dataType: "json",
+            data: { 
+                itemId: btn.attr('data-item-id')
             }
         })
         .done(function( json ) {

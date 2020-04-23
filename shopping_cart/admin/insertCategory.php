@@ -22,14 +22,14 @@ if( isset($_POST['categoryId']) ){
     ];
     $stmt->execute($arrParam);
     if($stmt->rowCount() > 0) {
-        header("Refresh: 3; url=./new.php");
+        header("Refresh: 3; url=./category.php");
         $objResponse['success'] = true;
         $objResponse['code'] = 200;
         $objResponse['info'] = "新增成功";
         echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
         exit();
     } else {
-        header("Refresh: 3; url=./new.php");
+        header("Refresh: 3; url=./category.php");
         $objResponse['success'] = false;
         $objResponse['code'] = 400;
         $objResponse['info'] = "新增失敗";
@@ -43,14 +43,14 @@ if( isset($_POST['categoryId']) ){
     $arrParam = [$_POST['categoryName']];
     $stmt->execute($arrParam);
     if($stmt->rowCount() > 0) {
-        header("Refresh: 3; url=./new.php");
+        header("Refresh: 3; url=./category.php");
         $objResponse['success'] = true;
         $objResponse['code'] = 200;
         $objResponse['info'] = "新增成功";
         echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
         exit();
     } else {
-        header("Refresh: 3; url=./new.php");
+        header("Refresh: 3; url=./category.php");
         $objResponse['success'] = false;
         $objResponse['code'] = 400;
         $objResponse['info'] = "新增失敗";

@@ -7,17 +7,20 @@
     <a class="p-2 text-dark" href="./itemList.php">商品一覽</a>
     <a class="p-2 text-dark" href="./myCart.php">
         <span>我的購物車</span>
+        (<span id="cartItemNum">
         <?php 
-        if(isset($_SESSION["cart"])){
-            echo "(".count($_SESSION["cart"]).")";
+        if(isset($_SESSION["cart"])) {
+            echo count($_SESSION["cart"]);
         } else {
-            echo "(0)";
+            echo 0;
         }
         ?>
+        </span>)
     </a>
 
     <?php if(isset($_SESSION["username"])) { ?>
-    <a class="p-2 text-dark" href="./check.php">我的訂單</a>
+    <a class="p-2 text-dark" href="./order.php">我的訂單</a>
+    <a class="p-2 text-dark" href="./itemTracking.php">商品追蹤清單</a>
     <?php } ?>
 
     </nav>

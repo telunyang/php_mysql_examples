@@ -3,11 +3,6 @@ session_start();
 require_once("./checkSession.php");
 require_once('./db.inc.php');
 
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
-// exit();
-
 if(!isset($_POST["paymentTypeId"])){
     header("Refresh: 3; url=./myCart.php");
     echo "請選擇付款方式…3秒後回購物車列表";
@@ -42,7 +37,7 @@ for($i = 0; $i < count($_POST["itemId"]); $i++){
 }
 
 if($count > 0) {
-    header("Refresh: 3; url=./check.php");
+    header("Refresh: 3; url=./order.php");
 
     //帳號完成後，注銷購物車資訊
     unset($_SESSION["cart"]);
@@ -53,7 +48,7 @@ if($count > 0) {
     echo json_encode($objResponse, JSON_UNESCAPED_UNICODE);
     exit();
 } else {
-    header("Refresh: 3; url=./check.php");
+    header("Refresh: 3; url=./order.php");
     $objResponse['success'] = false;
     $objResponse['code'] = 400;
     $objResponse['info'] = "訂單新增失敗";

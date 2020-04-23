@@ -6,7 +6,7 @@ require_once('./tpl/header.php');
 require_once("./tpl/func-buildTree.php");
 require_once("./tpl/func-getRecursiveCategoryIds.php");
 ?>
-<form name="myForm" method="POST" action="./addCheck.php">
+<form name="myForm" method="POST" action="./addOrder.php">
 
 <div class="container-fluid">
     <div class="row">

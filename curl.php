@@ -63,5 +63,5 @@ if($count > 0){
     $obj['info'] = "下載完成，共 {$count} 張貼圖";
 }
 
-echo json_encode($obj, JSON_UNESCAPED_UNICODE);
+echo json_encode($obj, JSON_UNESCAPED_UNICODE); 
 ?>

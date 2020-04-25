@@ -16,7 +16,7 @@ if(!isset($_POST["itemId"])){
 }
 
 //確認商品是否已追蹤，已追蹤就不再新增資料
-$sqlItemTracking = "SELECT 1 FROM `item_tracking` WHERE `username` = '{$_SESSION["username"]}' AND `itemId` = {$_POST["itemId"]}";
+$sqlItemTracking = "SELECT COUNT(1) FROM `item_tracking` WHERE `username` = '{$_SESSION["username"]}' AND `itemId` = {$_POST["itemId"]}";
 $countItemTracking = $pdo->query($sqlItemTracking)->fetch(PDO::FETCH_NUM)[0];
 if( $countItemTracking > 0 ){
     $objResponse['info'] = "商品已追蹤";

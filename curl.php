@@ -21,6 +21,11 @@ $html = curl_exec($ch);
 //關閉 cURL 連線
 curl_close($ch);
 
+//新增檔案，並將 HTML strings 寫入
+$fp = fopen('./web.txt', 'w+');
+fwrite($fp, $html);
+fclose($fp);
+
 //正規表達式
 $pattern = "/https:\/\/stickershop\.line-scdn.net\/stickershop\/v1\/sticker\/([0-9]+)\/android\/sticker\.png/m";
 

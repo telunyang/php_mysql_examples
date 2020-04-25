@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 //引入判斷是否登入機制
 require_once('./checkSession.php');
 
